@@ -1,3 +1,3 @@
 package com.example.listme.utils
 
-data class ListData(val taskId: String, val task: String)
+data class ListData(val taskId: String, var task: String)
