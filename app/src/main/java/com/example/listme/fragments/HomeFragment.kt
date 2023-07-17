@@ -32,6 +32,7 @@ class HomeFragment : Fragment(), AddListPopupFragment.DialogNextBtnClickListener
     private var popUpFragment: AddListPopupFragment? = null
     private lateinit var adapter: ListAdapterx
     private lateinit var mList: MutableList<ListData>
+    private lateinit var user : FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +48,12 @@ class HomeFragment : Fragment(), AddListPopupFragment.DialogNextBtnClickListener
         init(view)
         getDataFromFirebase()
         registerEvents()
+
+        user = FirebaseAuth.getInstance()
+        binding.logoutHome.setOnClickListener {
+            user.signOut()
+            navController.navigate(R.id.action_homeFragment_to_loginFragment)
+        }
     }
 
     private fun registerEvents(){
